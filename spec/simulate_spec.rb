@@ -1,6 +1,5 @@
 require 'rspec'
 require 'toy_robot/simulator'
-require 'pry'
 
 RSpec.describe 'Simulate Robot' do
   describe 'Example A' do
