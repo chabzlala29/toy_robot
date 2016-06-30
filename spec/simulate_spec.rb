@@ -1,5 +1,6 @@
 require 'rspec'
-require_relative '../lib/toy_robot/simulator'
+require 'toy_robot/simulator'
+require 'pry'
 
 RSpec.describe 'Simulate Robot' do
   describe 'Example A' do
@@ -8,6 +9,44 @@ RSpec.describe 'Simulate Robot' do
       simulator.place(0,0, :north)
       simulator.move
       expect(simulator.report).to eq '0,1,NORTH'
+    end
+  end
+
+  describe 'Example B' do
+    it 'should print correct output' do
+      simulator = ToyRobot::Simulator.new
+      simulator.place(0,0, :north)
+      simulator.left
+      expect(simulator.report).to eq '0,0,WEST'
+    end
+  end
+
+  describe 'Example C' do
+    it 'should print correct output' do
+      simulator = ToyRobot::Simulator.new
+      simulator.place(1,2, :east)
+      simulator.move
+      simulator.move
+      simulator.left
+      simulator.move
+      expect(simulator.report).to eq '3,3,NORTH'
+    end
+  end
+
+  describe 'Errors' do
+    it 'out of the table when placed' do
+      simulator = ToyRobot::Simulator.new
+      expect{ simulator.place(6,0, :north) }.to raise_error ToyRobot::InvalidPositionError
+    end
+
+    it 'invoke invalid command on first command' do
+      simulator = ToyRobot::Simulator.new
+      expect{ simulator.move }.to raise_error ToyRobot::InvalidCommandError
+    end
+
+    it 'when input invalid facing' do
+      simulator = ToyRobot::Simulator.new
+      expect{ simulator.place(0,0, :wrongfacing) }.to raise_error ToyRobot::InvalidFacingError
     end
   end
 end

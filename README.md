@@ -1,4 +1,4 @@
-# Toy Simulator
+# Toy Robot
 A simple gem to simulate a robot moving on a table
 
 ## Usage
@@ -6,9 +6,9 @@ A simple gem to simulate a robot moving on a table
 This is how you command a robot
 
 ```
-  require 'toy_simulator/simulator'
+  require 'toy_robot/simulator'
 
-  simulator = ToySimulator::Simulator.new
+  simulator = ToyRobot::Simulator.new
   simulator.place(0,0,:north)
   simulator.move
   simulator.report
