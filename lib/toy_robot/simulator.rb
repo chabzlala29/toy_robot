@@ -71,7 +71,7 @@ module ToyRobot
 
     def report
       position = @current_position.values.join(",")
-      "#{position},#{@current_facing.to_s.upcase}"
+      "# Output: #{position},#{@current_facing.to_s.upcase}"
     end
 
     private
@@ -106,7 +106,7 @@ module ToyRobot
     end
 
     def report_current_position
-      puts "CURRENT POSITION: #{@current_position[:x]}, #{@current_position[:y]}, #{@current_facing}"
+      puts "# Current position: #{@current_position[:x]},#{@current_position[:y]},#{@current_facing}"
     end
 
     def valid_position?(x,y)

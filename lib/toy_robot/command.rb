@@ -15,7 +15,10 @@ module ToyRobot
     private
 
     def self.execute
-      if inputs = @@command.match(PLACE_MATCHER)
+      if @@command =~ /PLACE/
+        @@simulator = ToyRobot::Simulator.new
+        @@simulator.place(0, 0, "NORTH")
+      elsif inputs = @@command.match(PLACE_MATCHER)
         x, y, facing = inputs[1], inputs[2], inputs[3]
         @@simulator = ToyRobot::Simulator.new
         @@simulator.place(x, y, facing)
