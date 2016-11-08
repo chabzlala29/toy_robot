@@ -2,7 +2,7 @@ require_relative "simulator"
 
 module ToyRobot
   class Command
-    PLACE_MATCHER = /^PLACE ([0-4]),([0-4]),(NORTH|SOUTH|EAST|WEST)/
+    PLACE_MATCHER = /^PLACE ([0-4]),([0-4]),(NORTH|SOUTH|EAST|WEST)$/
 
     @@comand = nil
     @@simulator = nil
@@ -15,7 +15,7 @@ module ToyRobot
     private
 
     def self.execute
-      if @@command =~ /PLACE/
+      if @@command == "PLACE"
         @@simulator = ToyRobot::Simulator.new
         @@simulator.place(0, 0, "NORTH")
       elsif inputs = @@command.match(PLACE_MATCHER)
