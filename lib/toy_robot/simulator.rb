@@ -5,9 +5,9 @@ module ToyRobot
   class Simulator
     extend ExecutionHooks
 
-    MAX_X = 5
-    MAX_Y = 5
-    VALID_FACINGS = [:north, :south, :east, :west]
+    MAX_X = 4
+    MAX_Y = 4
+    VALID_FACINGS = ["NORTH", "SOUTH", "EAST", "WEST"]
 
     attr_reader :current_facing, :current_position
 
@@ -19,23 +19,23 @@ module ToyRobot
     end
 
     def place(x,y,facing)
-      set_position(x,y)  
       set_facing(facing)
+      set_position(x,y)
       set_first_move! if @first_move
     end
 
     def move
       case @current_facing
-      when :north
+      when "NORTH"
         y = @current_position[:y] + 1
         set_position(@current_position[:x], y)
-      when :south
+      when "SOUTH"
         y = @current_position[:y] - 1
         set_position(@current_position[:x], y)
-      when :east
+      when "EAST"
         x = @current_position[:x] + 1
         set_position(x, @current_position[:y])
-      when :west
+      when "WEST"
         x = @current_position[:x] - 1
         set_position(x, @current_position[:y])
       end
@@ -43,28 +43,30 @@ module ToyRobot
 
     def left
       case @current_facing
-      when :north
-        set_facing(:west)
-      when :south
-        set_facing(:east)
-      when :east
-        set_facing(:north)
-      when :west
-        set_facing(:south)
+      when "NORTH"
+        set_facing("WEST")
+      when "SOUTH"
+        set_facing("EAST")
+      when "EAST"
+        set_facing("NORTH")
+      when "WEST"
+        set_facing("SOUTH")
       end
+      report_current_position
     end
 
     def right
       case @current_facing
-      when :north
-        set_facing(:east)
-      when :south
-        set_facing(:west)
-      when :east
-        set_facing(:south)
-      when :west
-        set_facing(:north)
+      when "NORTH"
+        set_facing("EAST")
+      when "SOUTH"
+        set_facing("WEST")
+      when "EAST"
+        set_facing("SOUTH")
+      when "WEST"
+        set_facing("NORTH")
       end
+      report_current_position
     end
 
     def report
@@ -80,11 +82,11 @@ module ToyRobot
 
     def set_first_move!
       @first_move = false
+      ""
     end
 
     def set_facing(facing)
-      facing = facing.to_sym
-      if VALID_FACINGS.include?(facing)
+      if ToyRobot::Simulator::VALID_FACINGS.include?(facing)
         @current_facing = facing
       else
         fail ToyRobot::InvalidFacingError
@@ -97,9 +99,14 @@ module ToyRobot
 
       if valid_position?(x,y)
         @current_position[:x], @current_position[:y] = x, y
+        report_current_position
       else
         fail ToyRobot::InvalidPositionError
       end
+    end
+
+    def report_current_position
+      puts "CURRENT POSITION: #{@current_position[:x]}, #{@current_position[:y]}, #{@current_facing}"
     end
 
     def valid_position?(x,y)

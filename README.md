@@ -1,17 +1,14 @@
 # Toy Robot
-A simple gem to simulate a robot moving on a table
+Chabz Toy Robot Simulator version 1.0
 
 ## Usage
 
 This is how you command a robot
 
 ```
-  require 'toy_robot/simulator'
+  Just run the script like "ruby run.rb"
 
-  simulator = ToyRobot::Simulator.new
-  simulator.place(0,0,:north)
-  simulator.move
-  simulator.report
+  Go control the robot as you wish. Enjoy!
 
   # it will print a report like this:
   # Output: 0,1,NORTH

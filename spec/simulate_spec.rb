@@ -5,7 +5,7 @@ RSpec.describe 'Simulate Robot' do
   describe 'Example A' do
     it 'should print correct output' do
       simulator = ToyRobot::Simulator.new
-      simulator.place(0,0, :north)
+      simulator.place(0,0, "NORTH")
       simulator.move
       expect(simulator.report).to eq '0,1,NORTH'
     end
@@ -14,7 +14,7 @@ RSpec.describe 'Simulate Robot' do
   describe 'Example B' do
     it 'should print correct output' do
       simulator = ToyRobot::Simulator.new
-      simulator.place(0,0, :north)
+      simulator.place(0,0, "NORTH")
       simulator.left
       expect(simulator.report).to eq '0,0,WEST'
     end
@@ -23,7 +23,7 @@ RSpec.describe 'Simulate Robot' do
   describe 'Example C' do
     it 'should print correct output' do
       simulator = ToyRobot::Simulator.new
-      simulator.place(1,2, :east)
+      simulator.place(1,2, "EAST")
       simulator.move
       simulator.move
       simulator.left
@@ -35,7 +35,7 @@ RSpec.describe 'Simulate Robot' do
   describe 'Errors' do
     it 'out of the table when placed' do
       simulator = ToyRobot::Simulator.new
-      expect{ simulator.place(6,0, :north) }.to raise_error ToyRobot::InvalidPositionError
+      expect{ simulator.place(6,0, "NORTH") }.to raise_error ToyRobot::InvalidPositionError
     end
 
     it 'invoke invalid command on first command' do
@@ -45,7 +45,7 @@ RSpec.describe 'Simulate Robot' do
 
     it 'when input invalid facing' do
       simulator = ToyRobot::Simulator.new
-      expect{ simulator.place(0,0, :wrongfacing) }.to raise_error ToyRobot::InvalidFacingError
+      expect{ simulator.place(0,0, "WRONGFACING") }.to raise_error ToyRobot::InvalidFacingError
     end
   end
 end
