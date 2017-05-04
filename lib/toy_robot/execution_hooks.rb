@@ -2,7 +2,7 @@ module ToyRobot
   module ExecutionHooks
     def method_added(method_name)
       # only add hooks to only methods
-      
+
       return if hooks.include?(method_name) || hooked_methods.include?(method_name)
       if only_methods.include?(method_name)
         add_hooks_to(method_name)

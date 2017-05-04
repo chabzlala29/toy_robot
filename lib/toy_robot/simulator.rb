@@ -1,5 +1,5 @@
-require 'toy_robot/errors'
-require 'toy_robot/execution_hooks'
+require_relative 'errors'
+require_relative 'execution_hooks'
 
 module ToyRobot
   class Simulator

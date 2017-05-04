@@ -7,7 +7,7 @@ RSpec.describe 'Simulate Robot' do
       simulator = ToyRobot::Simulator.new
       simulator.place(0,0, "NORTH")
       simulator.move
-      expect(simulator.report).to eq '0,1,NORTH'
+      expect(simulator.report).to eq '# Output: 0,1,NORTH'
     end
   end
 
@@ -16,7 +16,7 @@ RSpec.describe 'Simulate Robot' do
       simulator = ToyRobot::Simulator.new
       simulator.place(0,0, "NORTH")
       simulator.left
-      expect(simulator.report).to eq '0,0,WEST'
+      expect(simulator.report).to eq '# Output: 0,0,WEST'
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe 'Simulate Robot' do
       simulator.move
       simulator.left
       simulator.move
-      expect(simulator.report).to eq '3,3,NORTH'
+      expect(simulator.report).to eq '# Output: 3,3,NORTH'
     end
   end
 
